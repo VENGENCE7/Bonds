@@ -5,22 +5,17 @@ import mongoose from "mongoose";
 
 // ================================= Files/modules Import
 
+// Config
 import { config } from "./Configurations/config";
+// User
+import user_Router from "./Routes/User";
 
-// ================================= App Config
+
 const app = express();
-
 app.use(express.json());
 
-// ================================= MiddleWare
-
-app.use("/", (req, res, next) => {
-  res.status(200).send("Expressed success");
-});
-
-// ================================= DB CONFIG
-
-// ================================= API ENDPOINTS
+// ROutes
+app.use("/user",user_Router);
 
 mongoose
   .connect(config.connection_url)
