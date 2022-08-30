@@ -10,12 +10,11 @@ import { config } from "./Configurations/config";
 // User
 import user_Router from "./Routes/User";
 
-
 const app = express();
 app.use(express.json());
 
 // ROutes
-app.use("/user",user_Router);
+app.use("/user", user_Router);
 
 mongoose
   .connect(config.connection_url)
