@@ -8,7 +8,12 @@ const UserValidations = {
     body: Joi.object({
       name: Joi.string().alphanum().min(3).max(30).required(),
       email: Joi.string()
-        .email({ tlds: { allow: ["com", "net"] } })
+        .email({
+          minDomainSegments: 2,
+          tlds: {
+            allow: ["com", "net", "in", "co"],
+          },
+        })
         .required(),
       password: joi_password
         .string()
