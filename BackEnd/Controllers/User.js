@@ -3,11 +3,11 @@ import UserService from "../Services/User";
 const user_Service = new UserService();
 
 export default class UserController {
-  // Create User
-  async CreateUser(req, res, next) {
+  // Signup User
+  async SignupUser(req, res, next) {
     //call Service
     let user = req.body;
-    const result = await user_Service.CreateUser(user);
+    const result = await user_Service.SignupUser(user);
     if (result) {
       res.status(201).json({ message: "User Saved", data: result });
     } else {
@@ -46,7 +46,7 @@ export default class UserController {
     const user = req.body;
     const result = await user_Service.UpdateUser(id, user, { new: true });
     if (result) {
-      res.send({ message: "User Updated", data: result });
+      res.send({ message: "User Updated", old_data: result });
     } else {
       res.send("ERROR");
     }
