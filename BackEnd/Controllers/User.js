@@ -1,4 +1,5 @@
 import UserService from "../Services/User";
+import { UserError } from "../ErrorMessages/User";
 
 const user_Service = new UserService();
 
@@ -18,12 +19,15 @@ export default class UserController {
   // Find User By Id
   async FindUserById(req, res, next) {
     //call Service
-    let id = req.query.id;
-    const result = await user_Service.FindUserById(id);
-    if (result) {
-      res.status(201).json({ message: "User Found", data: result });
-    } else {
-      res.send("ERROR");
+    try {
+      let id = req.query.id;
+      const result = await user_Service.FindUserById(id);
+      res.send({ message: "User Found", data: result });
+    } catch (err) {
+      next({
+        status: UserError[err.message]?.status,
+        message: UserError[err.message]?.message,
+      });
     }
   }
 

@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 
 // Config
 import { config } from "./Configurations/config";
+import errorHandler from "./Middleware/ErrorHandler";
 // User
 import user_Router from "./Routes/User";
 
@@ -15,6 +16,7 @@ app.use(express.json());
 
 // ROutes
 app.use("/user", user_Router);
+app.use(errorHandler);
 
 mongoose
   .connect(config.connection_url)

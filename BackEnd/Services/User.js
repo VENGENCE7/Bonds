@@ -10,7 +10,12 @@ export default class UserService {
   }
   //  FIND USER BY ID
   async FindUserById(userID) {
-    return await User.findById(userID);
+    const result = User.findById(userID);
+    if (result) {
+      return await result;
+    } else {
+      throw new Error("notFound");
+    }
   }
   //  Delete USER BY ID
   async DeleteUserById(userID) {
