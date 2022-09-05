@@ -15,10 +15,14 @@ export const UserError = {
     status: 400,
     errormessage: "User Allready Exists!!, ** Login Instead **",
   },
-  incorrectPassword:{
-    status: 400 ,
+  incorrectPassword: {
+    status: 400,
     errormessage: "Incorrect Password",
-  }
+  },
+  invalidID: {
+    status: 400,
+    errormessage: "ID not Valid",
+  },
 };
 
 // :{
