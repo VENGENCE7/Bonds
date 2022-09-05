@@ -14,12 +14,15 @@ import errorHandler from "./Middleware/ErrorHandler";
 
 // User
 import user_Router from "./Routes/User";
+//  Data
+import data_Router from "./Routes/Data";
 
 const app = express();
 app.use(express.json());
 
 // ROutes
 app.use("/user", user_Router);
+app.use("/data", data_Router);
 app.use(errorHandler);
 
 mongoose

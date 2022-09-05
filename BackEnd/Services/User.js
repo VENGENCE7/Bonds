@@ -13,7 +13,7 @@ export default class UserService {
       const addUser = new User(user);
       addUser.password = bcrypt.hashSync(addUser.password);
       const result = await addUser.save();
-      if (result) {
+      if (result && result !== null) {
         return result;
       } else {
         throw new Error("unabletoSignUp");
@@ -54,7 +54,7 @@ export default class UserService {
   async FindUserById(userID) {
     // find user by id
     const result = await User.findById(userID);
-    if (result) {
+    if (result && result !== null) {
       return result;
     } else if (result === null) {
       throw new Error("notFound");
@@ -66,7 +66,7 @@ export default class UserService {
   async DeleteUserById(userID) {
     // find user by id and delete user
     const result = await User.findByIdAndDelete(userID);
-    if (result) {
+    if (result && result !== null) {
       return result;
     } else if (result === null) {
       throw new Error("notFound");
@@ -78,9 +78,9 @@ export default class UserService {
   async UpdateUser(userID, updatedDATA) {
     // updates passwords
     updatedDATA.password ? bcrypt.hashSync(updatedDATA.password) : {};
-    // find user b id and updates data
+    // find user by id and updates data
     const result = await User.findByIdAndUpdate(userID, updatedDATA);
-    if (result) {
+    if (result && result !== null) {
       return result;
     } else if (result === null) {
       throw new Error("notFound");

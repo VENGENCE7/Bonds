@@ -39,7 +39,7 @@ export default class UserController {
     //call Service
     try {
       const result = await user_Service.FindAllUsers();
-      res.send({ message: "Account List", Accounts: result });
+      res.status(200).json({ message: "Account List", Accounts: result });
     } catch (err) {
       next({
         status: UserError[err.message]?.status,
@@ -54,7 +54,7 @@ export default class UserController {
     try {
       let id = req.query.id;
       const result = await user_Service.FindUserById(id);
-      res.send({ message: "Account Found", data: result });
+      res.status(200).json({ message: "Account Found", data: result });
     } catch (err) {
       next({
         status: UserError[err.message]?.status,
@@ -69,7 +69,7 @@ export default class UserController {
     try {
       let id = req.query.id;
       const result = await user_Service.DeleteUserById(id);
-      res.send({ message: "Account Deleted", data: result });
+      res.status(200).json({ message: "Account Deleted", data: result });
     } catch (err) {
       next({
         status: UserError[err.message]?.status,
@@ -85,7 +85,11 @@ export default class UserController {
       let id = req.query.id;
       const user = req.body;
       const result = await user_Service.UpdateUser(id, user, { new: true });
-      res.send({ message: "Account Updated", old_data: result });
+      res.status(200).json({
+        message: "Account Updated",
+        old_data: result,
+        updated_data: user,
+      });
     } catch (err) {
       next({
         status: UserError[err.message]?.status,
