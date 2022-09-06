@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import Data from "../Models/Data";
 
 export default class DataService {
@@ -13,14 +14,28 @@ export default class DataService {
   }
 
   //  ADD DATA
-  async addData(data) {
+  async addData(data, existingUser) {
     // adding User Data
     const addData = new Data(data);
-    const result = await addData.save();
-    if (result && result !== null) {
-      return result;
-    } else {
-      throw new Error("unabletoAddData");
+    // ========================================
+    // try {
+    //   const session = await mongoose.startSession();
+    //   session.startTransaction();
+    //   await addData.save({ session });
+    //   existingUser.data.push(addData);
+    //   await existingUser.save({ session });
+    //   await session.commitTransaction();
+    // } catch (err) {
+    //   console.log(err);
+    // }
+    // ====================
+    if (existingUser) {
+      const result = await addData.save();
+      if (result && result !== null) {
+        return result;
+      } else {
+        throw new Error("unabletoAddData");
+      }
     }
   }
 

@@ -8,7 +8,7 @@ export default class UserController {
   async SignUpUser(req, res, next) {
     //call Service
     try {
-      let user = req.body;
+      const user = req.body;
       const result = await user_Service.SignUpUser(user);
       res.status(201).json({ message: "Account Created", data: result });
     } catch (err) {
@@ -23,7 +23,7 @@ export default class UserController {
   async LogInUser(req, res, next) {
     //call Service
     try {
-      let user = req.body;
+      const user = req.body;
       const result = await user_Service.LogInUser(user);
       res.status(200).json({ message: "Account Logged IN", data: result });
     } catch (err) {
@@ -52,7 +52,7 @@ export default class UserController {
   async FindUserById(req, res, next) {
     //call Service
     try {
-      let id = req.query.id;
+      const id = req.query.id;
       const result = await user_Service.FindUserById(id);
       res.status(200).json({ message: "Account Found", data: result });
     } catch (err) {
@@ -67,7 +67,7 @@ export default class UserController {
   async DeleteUserById(req, res, next) {
     //call Service
     try {
-      let id = req.query.id;
+      const id = req.query.id;
       const result = await user_Service.DeleteUserById(id);
       res.status(200).json({ message: "Account Deleted", data: result });
     } catch (err) {
@@ -82,7 +82,7 @@ export default class UserController {
   async UpdateUser(req, res, next) {
     //call Service
     try {
-      let id = req.query.id;
+      const id = req.query.id;
       const user = req.body;
       const result = await user_Service.UpdateUser(id, user, { new: true });
       res.status(200).json({
