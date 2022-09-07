@@ -1,5 +1,7 @@
 import User from "../Models/Users";
 import bcrypt from "bcryptjs";
+import mongoose from "mongoose";
+// import Data from "../Models/Data";
 
 export default class UserService {
   //  ADD USER
@@ -53,7 +55,20 @@ export default class UserService {
   //  FIND USER BY ID
   async FindUserById(userID) {
     // find user by id
-    const result = await User.findById(userID);
+    const result = await User.aggregate([
+      {
+        $match: { _id: mongoose.Types.ObjectId(userID) },
+      },
+      {
+        $lookup: {
+          from: "datas",
+          localField: "_id",
+          foreignField: "userId",
+          as: "YourData",
+        },
+      },
+    ]);
+    // const result=Data.findOne(userID).populate("data")
     if (result && result !== null) {
       return result;
     } else if (result === null) {
