@@ -3,7 +3,12 @@ import LinkSchema from "./Links";
 
 const DataSchema = new mongoose.Schema({
   // userID
-  user: { type: mongoose.Types.ObjectId, ref: "User", required: true },
+  userId: {
+    type: mongoose.Types.ObjectId,
+    ref: "User",
+    unique: true,
+    required: true,
+  },
   // name
   name: { type: String, trim: true },
   // image
@@ -11,11 +16,20 @@ const DataSchema = new mongoose.Schema({
   // designation
   designation: { type: String, trim: true },
   // date created
-  accountCreated:{ type: Date, default: Date.now },
+  accountCreated: { type: Date, default: Date.now },
   // description
   description: { type: String, trim: true },
   // Social Links
-  links: LinkSchema,
+  socialLinks: {
+    type: LinkSchema,
+    default: {},
+  },
+  // Other Links
+  otherLinks: {
+    type: Map,
+    of: String,
+    default:{}
+  },
 });
 
 export default mongoose.model("Data", DataSchema);

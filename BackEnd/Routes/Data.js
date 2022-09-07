@@ -14,7 +14,7 @@ data_Router.get("/find", data_Controller.findDataById);
 data_Router.delete("/delete", data_Controller.deleteDataById);
 data_Router.post(
   "/add",
-  // validate(DataValidations.addOrUpdateData),
+  validate(DataValidations.addOrUpdateData),
   data_Controller.addData
 );
 data_Router.put(

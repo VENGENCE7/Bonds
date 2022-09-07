@@ -28,8 +28,7 @@ export default class DataController {
     let existingUser;
     try {
       // check if the userid mentioned is available in database-User
-      existingUser = await user_Service.FindUserById(data.user);
-      // res.status(200).json({ message: "Account Found", data: result });
+      existingUser = await user_Service.FindUserById(data.userId);
     } catch (err) {
       next({
         status: UserError[err.message]?.status,
@@ -44,7 +43,7 @@ export default class DataController {
     } else {
       // If id is valid-proceeds to save data
       try {
-        const result = await data_Service.addData(data, existingUser);
+        const result = await data_Service.addData(data);
         // =========== trying
         res.status(201).json({ message: "Data Added", data: result });
       } catch (err) {

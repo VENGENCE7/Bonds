@@ -1,23 +1,24 @@
 import mongoose from "mongoose";
+import LinkDetailSchema from "./LinkDetail";
 
 const LinkSchema = new mongoose.Schema(
   {
     // Github
-    gh: { type: String, trim: true, default: "" },
+    gh: { type: LinkDetailSchema, default: {} },
     // Linkedin
-    li: { type: String, trim: true, default: "" },
+    li: { type: LinkDetailSchema, default: {} },
     // Instagram
-    ig: { type: String, trim: true, default: "" },
+    ig: { type: LinkDetailSchema, default: {} },
     // Facebook
-    fb: { type: String, trim: true, default: "" },
+    fb: { type: LinkDetailSchema, default: {} },
     // Twitter
-    tw: { type: String, trim: true, default: "" },
+    tw: { type: LinkDetailSchema, default: {} },
     // Telegram
-    tg: { type: String, trim: true, default: "" },
+    tg: { type: LinkDetailSchema, default: {} },
     // mail1
-    m1: { type: String, trim: true, default: "" },
+    m1: { type: LinkDetailSchema, default: {} },
     // mail2
-    m2: { type: String, trim: true, default: "" },
+    m2: { type: LinkDetailSchema, default: {} },
   },
   { _id: false }
 );

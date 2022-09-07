@@ -14,28 +14,14 @@ export default class DataService {
   }
 
   //  ADD DATA
-  async addData(data, existingUser) {
+  async addData(data) {
     // adding User Data
     const addData = new Data(data);
-    // ========================================
-    // try {
-    //   const session = await mongoose.startSession();
-    //   session.startTransaction();
-    //   await addData.save({ session });
-    //   existingUser.data.push(addData);
-    //   await existingUser.save({ session });
-    //   await session.commitTransaction();
-    // } catch (err) {
-    //   console.log(err);
-    // }
-    // ====================
-    if (existingUser) {
-      const result = await addData.save();
-      if (result && result !== null) {
-        return result;
-      } else {
-        throw new Error("unabletoAddData");
-      }
+    const result = await addData.save();
+    if (result && result !== null) {
+      return result;
+    } else {
+      throw new Error("unabletoAddData");
     }
   }
 
