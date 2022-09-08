@@ -12,7 +12,7 @@ export const DataError = {
     errormessage: "ID not in Database",
   },
   idError: {
-    status: 500,
+    status: 400,
     errormessage: "Incomplete ID or Wrong ID Format Provided",
   },
 };

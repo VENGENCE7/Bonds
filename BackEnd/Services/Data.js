@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
 import Data from "../Models/Data";
+
 
 export default class DataService {
   //  FIND ALL DATA

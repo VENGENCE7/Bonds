@@ -12,12 +12,16 @@ export const UserError = {
     errormessage: "Unable to Sign Up account, **Check Password**",
   },
   userAllreadyExists: {
-    status: 400,
+    status: 409,
     errormessage: "User Allready Exists!!, ** Login Instead **",
   },
   incorrectPassword: {
     status: 400,
     errormessage: "Incorrect Password",
+  },
+  mailAllreadyInUse: {
+    status: 409,
+    errormessage: "Mail Id allready used by another User",
   },
   invalidID: {
     status: 400,
