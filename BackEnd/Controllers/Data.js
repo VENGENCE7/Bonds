@@ -7,11 +7,13 @@ const data_Service = new DataService();
 const user_Service = new UserService();
 
 export default class DataController {
-  // @Get_All_Data
-  async getData(req, res, next) {
+  // @desc Get_All_Data
+  // @route /data/allData
+  // @access Private
+  async allData(req, res, next) {
     //call Service
     try {
-      const result = await data_Service.getData();
+      const result = await data_Service.allData();
       res.status(200).json({ message: "Data Found", data: result });
     } catch (err) {
       next({
@@ -21,7 +23,9 @@ export default class DataController {
     }
   }
 
-  // @Add_Data
+  // @desc Add_Data
+  // @route /data/add
+  // @access Private
   async addData(req, res, next) {
     //call Service
     const data = req.body;
@@ -56,7 +60,9 @@ export default class DataController {
     }
   }
 
-  // @Update_Data
+  // @desc Update_Data
+  // @route /data/update
+  // @access Private
   async updateData(req, res, next) {
     //call Service
     try {
@@ -76,7 +82,9 @@ export default class DataController {
     }
   }
 
-  // @Find_Data_By_Id
+  // @desc Find_Data_By_Id
+  // @route /data/find
+  // @access Private
   async findDataById(req, res, next) {
     //call Service
     try {
@@ -91,7 +99,9 @@ export default class DataController {
     }
   }
 
-  // @Delete_Data_By_Id
+  // @desc Delete_Data_By_Id
+  // @route /data/delete
+  // @access Private
   async deleteDataById(req, res, next) {
     //call Service
     try {

@@ -4,7 +4,9 @@ import { UserError } from "../ErrorMessages/User";
 const user_Service = new UserService();
 
 export default class UserController {
-  // Signup User
+  // @desc Signup User
+  // @route POST
+  // @access Public
   async SignUpUser(req, res, next) {
     //call Service
     try {
@@ -19,7 +21,9 @@ export default class UserController {
     }
   }
 
-  // Login user
+  // @desc Login user
+  // @route POST
+  // @access Public
   async LogInUser(req, res, next) {
     //call Service
     try {
@@ -34,7 +38,9 @@ export default class UserController {
     }
   }
 
-  // Find All Users
+  // @desc Find All Users
+  // @route GET /user/allusers
+  // @access Private
   async FindAllUsers(req, res, next) {
     //call Service
     try {
@@ -48,7 +54,9 @@ export default class UserController {
     }
   }
 
-  // Find User By Id
+  // @desc Find User By Id
+  // @route GET user/search
+  // @access Public
   async FindUserById(req, res, next) {
     //call Service
     try {
@@ -63,7 +71,9 @@ export default class UserController {
     }
   }
 
-  // Delete User By Id
+  // @desc Delete User By Id
+  // @route DELETE user/delete
+  // @access Private
   async DeleteUserById(req, res, next) {
     //call Service
     try {
@@ -78,7 +88,9 @@ export default class UserController {
     }
   }
 
-  // Update User
+  // @desc Update User
+  // @route PUT user/update
+  // @access Private
   async UpdateUser(req, res, next) {
     //call Service
     try {

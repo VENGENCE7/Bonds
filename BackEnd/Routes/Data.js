@@ -10,7 +10,7 @@ const data_Router = express.Router();
 const data_Controller = new DataController();
 
 data_Router
-  .get("/get", data_Controller.getData)
+  .get("/allData", data_Controller.allData)
   .get("/find", data_Controller.findDataById)
   .delete("/delete", data_Controller.deleteDataById)
   .post(

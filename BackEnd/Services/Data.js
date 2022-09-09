@@ -2,7 +2,7 @@ import Data from "../Models/Data";
 
 export default class DataService {
   //  @FIND_ALL_DATA
-  async getData() {
+  async allData() {
     // displays all users in the database USER
     const result = await Data.find();
     if (result && result !== null) {
