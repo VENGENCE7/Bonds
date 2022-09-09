@@ -7,7 +7,7 @@ const data_Service = new DataService();
 const user_Service = new UserService();
 
 export default class DataController {
-  // get All Data
+  // @Get_All_Data
   async getData(req, res, next) {
     //call Service
     try {
@@ -21,7 +21,7 @@ export default class DataController {
     }
   }
 
-  // Add Data
+  // @Add_Data
   async addData(req, res, next) {
     //call Service
     const data = req.body;
@@ -56,7 +56,7 @@ export default class DataController {
     }
   }
 
-  // Update Data
+  // @Update_Data
   async updateData(req, res, next) {
     //call Service
     try {
@@ -76,7 +76,7 @@ export default class DataController {
     }
   }
 
-  // Find Data By Id
+  // @Find_Data_By_Id
   async findDataById(req, res, next) {
     //call Service
     try {
@@ -91,7 +91,7 @@ export default class DataController {
     }
   }
 
-  // Delete Data By Id
+  // @Delete_Data_By_Id
   async deleteDataById(req, res, next) {
     //call Service
     try {

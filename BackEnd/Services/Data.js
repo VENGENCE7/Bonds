@@ -1,8 +1,7 @@
 import Data from "../Models/Data";
 
-
 export default class DataService {
-  //  FIND ALL DATA
+  //  @FIND_ALL_DATA
   async getData() {
     // displays all users in the database USER
     const result = await Data.find();
@@ -13,7 +12,7 @@ export default class DataService {
     }
   }
 
-  //  ADD DATA
+  //  @ADD_DATA
   async addData(data) {
     // adding User Data
     const addData = new Data(data);
@@ -25,7 +24,7 @@ export default class DataService {
     }
   }
 
-  //  UPDATE DATA
+  //  @UPDATE_DATA
   async updateData(dataID, updatedDATA) {
     // find data by id and updates data
     const result = await Data.findByIdAndUpdate(dataID, updatedDATA);
@@ -38,7 +37,7 @@ export default class DataService {
     }
   }
 
-  //  FIND DATA BY ID
+  //  @FIND_DATA_BY_ID
   async FindDataById(dataID) {
     // find Data by id
     const result = await Data.findById(dataID);
@@ -51,7 +50,7 @@ export default class DataService {
     }
   }
 
-  //  DELETE DATA
+  //  @DELETE_DATA
   async DeleteDataById(dataID) {
     // find Data by id and delete Data
     const result = await Data.findByIdAndDelete(dataID);

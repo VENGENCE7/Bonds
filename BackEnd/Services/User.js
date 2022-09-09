@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 const saltRounds = 10;
 
 export default class UserService {
-  //  @ADD USER
+  //  @SIGNUP_USER
   async SignUpUser(user) {
     // check for existing user
     const userExist = await User.findOne({ email: user.email });
@@ -24,7 +24,7 @@ export default class UserService {
     }
   }
 
-  // @LOG IN USER
+  // @LOGIN_USER
   async LogInUser(user) {
     // check for existing user
     const userExist = await User.findOne({ email: user.email });
@@ -45,7 +45,7 @@ export default class UserService {
     }
   }
 
-  //  @FIND ALL USERS
+  //  @FIND_ALL_USERS
   async FindAllUsers() {
     // displays all users in the database USER
     const result = await User.find();
@@ -56,7 +56,7 @@ export default class UserService {
     }
   }
 
-  //  @FIND USER BY ID
+  //  @FIND_USER_BY_ID
   async FindUserById(userID) {
     // find user by id
     const result = await User.aggregate([
@@ -72,13 +72,17 @@ export default class UserService {
           // feild of db2 [DATA]
           foreignField: "userId",
           // feild displayed as
-          as: "YourData",
+          as: "MyData",
         },
+      },
+      {
+        // feild is unwinded from an array and shown as ana object
+        $unwind: "$MyData",
       },
     ]);
 
-    if (result && result !== null) {
-      return result;
+    if (result[0] && result[0] !== null) {
+      return result[0];
     } else if (result === null) {
       throw new Error("notFound");
     } else {
@@ -86,7 +90,7 @@ export default class UserService {
     }
   }
 
-  //  @Delete USER BY ID
+  //  @DELETE_USER_BY_ID
   async DeleteUserById(userID) {
     // find user by id and delete user
     const result = await User.findByIdAndDelete(userID);
@@ -99,7 +103,7 @@ export default class UserService {
     }
   }
 
-  //  @Update USER
+  //  @UPDATE_USER
   async UpdateUser(userID, updatedDATA) {
     // check for id being allready being used by another user
     const userExist = await User.findOne({ email: updatedDATA.email });
