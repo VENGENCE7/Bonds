@@ -21,6 +21,8 @@ import errorHandler from "./Middleware/ErrorHandler";
 
 //  Root
 import root_Router from "./Routes/Root";
+// Auth
+import auth_Router from "./Routes/Auth";
 // User
 import user_Router from "./Routes/User";
 //  Data
@@ -31,7 +33,7 @@ import data_Router from "./Routes/Data";
 const app = express();
 // COMMUNICATION ESSENTIALS
 
-// Cross-Origin Resource Sharing := Cors for server and client communication
+// Cross-Origin Resource Sharing :=> Cors for server and client communication
 app.use(cors(corsConfig));
 //  to recognize the incoming Request Object as strings or arrays.
 app.use(express.urlencoded({ extended: false }));
@@ -42,6 +44,7 @@ app.use(cookieParser());
 
 // ROUTES
 app.use("/", root_Router);
+app.use("/auth", auth_Router);
 app.use("/user", user_Router);
 app.use("/data", data_Router);
 app.use(errorHandler);

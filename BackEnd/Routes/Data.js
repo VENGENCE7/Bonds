@@ -5,10 +5,13 @@ import { validate } from "express-validation";
 import DataController from "../Controllers/Data";
 //  Import Validation
 import DataValidations from "../Validations/Data";
+// import Authenticator
+import Authenticate from "../Middleware/Authenticator";
 
 const data_Router = express.Router();
 const data_Controller = new DataController();
 
+data_Router.use(Authenticate);
 data_Router
   .get("/allData", data_Controller.allData)
   .get("/find", data_Controller.findDataById)

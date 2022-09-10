@@ -51,7 +51,6 @@ export default class DataController {
         // =========== trying
         res.status(201).json({ message: "Data Added", data: result });
       } catch (err) {
-        console.log(err);
         next({
           status: DataError[err.message]?.status,
           message: DataError[err.message]?.errormessage,

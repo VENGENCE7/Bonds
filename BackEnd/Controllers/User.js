@@ -4,40 +4,6 @@ import { UserError } from "../ErrorMessages/User";
 const user_Service = new UserService();
 
 export default class UserController {
-  // @desc Signup User
-  // @route POST
-  // @access Public
-  async SignUpUser(req, res, next) {
-    //call Service
-    try {
-      const user = req.body;
-      const result = await user_Service.SignUpUser(user);
-      res.status(201).json({ message: "Account Created", data: result });
-    } catch (err) {
-      next({
-        status: UserError[err.message]?.status,
-        message: UserError[err.message]?.errormessage,
-      });
-    }
-  }
-
-  // @desc Login user
-  // @route POST
-  // @access Public
-  async LogInUser(req, res, next) {
-    //call Service
-    try {
-      const user = req.body;
-      const result = await user_Service.LogInUser(user);
-      res.status(200).json({ message: "Account Logged IN", data: result });
-    } catch (err) {
-      next({
-        status: UserError[err.message]?.status,
-        message: UserError[err.message]?.errormessage,
-      });
-    }
-  }
-
   // @desc Find All Users
   // @route GET /user/allusers
   // @access Private
@@ -55,7 +21,7 @@ export default class UserController {
   }
 
   // @desc Find User By Id
-  // @route GET user/search
+  // @route GET /user/search
   // @access Public
   async FindUserById(req, res, next) {
     //call Service
@@ -72,7 +38,7 @@ export default class UserController {
   }
 
   // @desc Delete User By Id
-  // @route DELETE user/delete
+  // @route DELETE /user/delete
   // @access Private
   async DeleteUserById(req, res, next) {
     //call Service
@@ -89,7 +55,7 @@ export default class UserController {
   }
 
   // @desc Update User
-  // @route PUT user/update
+  // @route PUT /user/update
   // @access Private
   async UpdateUser(req, res, next) {
     //call Service
