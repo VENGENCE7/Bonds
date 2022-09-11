@@ -15,7 +15,24 @@ export default class AuthController {
     try {
       const user = req.body;
       const result = await auth_Service.SignUpUser(user);
-      res.status(201).json({ result });
+
+      // creating secure cookie with refresh token
+      res.cookie("bonds_jwt", result.token.rToken, {
+        // accessible by web server only
+        httpOnly: true,
+        // https
+        secure: true,
+        // cross site cookie
+        sameSite: "None",
+        // cookie expiry:set to 7days
+        maxAge: parseInt(tokenconfig.cookielife, 10),
+      });
+
+      res.status(201).json({
+        message: result.message,
+        data: result.data,
+        accessToken: result.token.aToken,
+      });
     } catch (err) {
       next({
         status: AuthError[err.message]?.status,

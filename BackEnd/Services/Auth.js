@@ -19,18 +19,18 @@ export default class AuthService {
       const saved = await addUser.save();
       if (saved && saved !== null) {
         // service to create access token
-        // const token = token_Service.CreateToken(saved);
-        // if ((token && token !== null) || result !== {}) {
-        //   const result = {
-        //     message: "Account Successfully Created !!",
-        //     data: saved,
-        //     token: token,
-        //   };
-        //   return result;
-        // } else {
-        //   throw new Error("tokenCreationFailed");
-        // }
-        return saved;
+        const token = token_Service.CreateToken(saved);
+        if ((token && token !== null) || result !== {}) {
+          const result = {
+            message: "Account Successfully Created !!",
+            data: saved,
+            token: token,
+          };
+          return result;
+        } else {
+          throw new Error("tokenCreationFailed");
+        }
+        // return saved;
       } else {
         throw new Error("unabletoSignUp");
       }
