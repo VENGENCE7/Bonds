@@ -29,7 +29,7 @@ import user_Router from "./Routes/User";
 //  Data
 import data_Router from "./Routes/Data";
 
-// ================================= @Express APP
+// ================================= @Express APclear
 
 const app = express();
 // COMMUNICATION ESSENTIALS
