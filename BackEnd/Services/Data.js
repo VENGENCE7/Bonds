@@ -1,3 +1,4 @@
+import { isValidObjectId } from "mongoose";
 import Data from "../Models/Data";
 
 export default class DataService {
@@ -27,39 +28,45 @@ export default class DataService {
   //  @UPDATE_DATA
   async updateData(dataID, updatedDATA) {
     // find data by id and updates data
-    const result = await Data.findByIdAndUpdate(dataID, updatedDATA);
-    if (result && result !== null) {
-      return result;
-    } else if (result === null) {
-      throw new Error("invalidID");
+    if (isValidObjectId(dataID)) {
+      const result = await Data.findByIdAndUpdate(dataID, updatedDATA);
+      if (result && result !== null) {
+        return result;
+      } else if (result === null) {
+        throw new Error("noDataFound");
+      }
     } else {
-      throw new Error("idError");
+      throw new Error("invalidID");
     }
   }
 
   //  @FIND_DATA_BY_ID
   async FindDataById(dataID) {
     // find Data by id
-    const result = await Data.findById(dataID);
-    if (result && result !== null) {
-      return result;
-    } else if (result === null) {
-      throw new Error("invalidID");
+    if (isValidObjectId(dataID)) {
+      const result = await Data.findById(dataID);
+      if (result && result !== null) {
+        return result;
+      } else if (result === null) {
+        throw new Error("noDataFound");
+      }
     } else {
-      throw new Error("idError");
+      throw new Error("invalidID");
     }
   }
 
   //  @DELETE_DATA
   async DeleteDataById(dataID) {
     // find Data by id and delete Data
-    const result = await Data.findByIdAndDelete(dataID);
-    if (result && result !== null) {
-      return result;
-    } else if (result === null) {
-      throw new Error("invalidID");
+    if (isValidObjectId(dataID)) {
+      const result = await Data.findByIdAndDelete(dataID);
+      if (result && result !== null) {
+        return result;
+      } else if (result === null) {
+        throw new Error("noDataFound");
+      }
     } else {
-      throw new Error("idError");
+      throw new Error("invalidID");
     }
   }
 }

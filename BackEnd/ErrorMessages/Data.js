@@ -8,10 +8,6 @@ export const DataError = {
     errormessage: "Adding Data Failed !! ",
   },
   invalidID: {
-    status: 404,
-    errormessage: "ID not in Database",
-  },
-  idError: {
     status: 400,
     errormessage: "Incomplete ID or Wrong ID Format Provided",
   },

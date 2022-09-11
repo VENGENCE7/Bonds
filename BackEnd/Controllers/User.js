@@ -37,6 +37,23 @@ export default class UserController {
     }
   }
 
+  // @desc Find User Data By User Id
+  // @route GET /user/data
+  // @access Private
+  async FindUserDataByUserId(req, res, next) {
+    //call Service
+    try {
+      const id = req.query.id;
+      const result = await user_Service.FindUserDataByUserId(id);
+      res.status(200).json({ message: "Account Found", data: result });
+    } catch (err) {
+      next({
+        status: UserError[err.message]?.status,
+        message: UserError[err.message]?.errormessage,
+      });
+    }
+  }
+
   // @desc Delete User By Id
   // @route DELETE /user/delete
   // @access Private
