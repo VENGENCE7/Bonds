@@ -2,8 +2,8 @@ import rateLimit from "express-rate-limit";
 import { authconfig } from "../Configurations/auth";
 
 const authLimiter = rateLimit({
-  windowMs: authconfig.time * 60 * 1000, // 1 minute
-  max: authconfig.limit, // Limit each IP to 5 auth requests per `window` per 1 minute
+  windowMs: parseInt(authconfig.time, 10), // 1 minute
+  max: parseInt(authconfig.limit, 10), // Limit each IP to 5 auth requests per `window` per 1 minute
   message:
     "Too many authentication requests from this IP, please try again after 1 minute",
   handler: function (req, res, next) {

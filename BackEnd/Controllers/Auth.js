@@ -41,8 +41,8 @@ export default class AuthController {
         secure: true,
         // cross site cookie
         sameSite: "None",
-        // cookie expiry:set to match
-        maxAge: tokenconfig.refreshtokenlife * 24 * 60 * 60 * 1000,
+        // cookie expiry:set to 7days
+        maxAge: parseInt(tokenconfig.cookielife, 10),
       });
       // sending access token
       res.status(200).json({ accessToken: result.aToken });
@@ -67,7 +67,7 @@ export default class AuthController {
         cookie.bonds_jwt
       );
       // sending access token
-      res.status(200).json({ accessToken: refreshAccessToken });
+      res.status(200).json(refreshAccessToken);
     } catch (err) {
       next({
         status: AuthError[err.message]?.status,

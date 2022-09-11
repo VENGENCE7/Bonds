@@ -10,12 +10,16 @@ export default class TokenService {
         UserInfo: { id: user._id, email: user.email },
       },
       tokenconfig.access,
-      { expiresIn: "30s" }
+      { expiresIn: tokenconfig.acesstokenlife }
     );
 
-    const refreshToken = jwt.sign({ email: user.email }, tokenconfig.refresh, {
-      expiresIn: "7d",
-    });
+    const refreshToken = jwt.sign(
+      { id: user._id, email: user.email },
+      tokenconfig.refresh,
+      {
+        expiresIn: tokenconfig.refreshtokenlife,
+      }
+    );
 
     const result = { aToken: accessToken, rToken: refreshToken };
     return result;
@@ -25,7 +29,7 @@ export default class TokenService {
   async RefreshToken(token) {
     const refreshToken = token;
     let accessToken;
-    const result = await jwt.verify(
+    const result = jwt.verify(
       refreshToken,
       tokenconfig.refresh,
       async (err, decoded) => {
@@ -41,7 +45,7 @@ export default class TokenService {
             UserInfo: { id: userFound._id, email: userFound.email },
           },
           tokenconfig.access,
-          { expiresIn: "30s" }
+          { expiresIn: tokenconfig.acesstokenlife }
         );
         return { accessToken };
       }

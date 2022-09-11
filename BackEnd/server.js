@@ -4,6 +4,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import helmet from "helmet";
 
 // ================================= @Config Import
 
@@ -35,6 +36,8 @@ const app = express();
 
 // Cross-Origin Resource Sharing :=> Cors for server and client communication
 app.use(cors(corsConfig));
+// helps you secure HTTP headers returned by your Express app
+app.use(helmet());
 //  to recognize the incoming Request Object as strings or arrays.
 app.use(express.urlencoded({ extended: false }));
 // analyze incoming Request Object as a JSON Object
